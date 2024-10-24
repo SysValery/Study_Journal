@@ -1,0 +1,156 @@
+-- Створення бази даних
+CREATE DATABASE study_journal_db;
+USE study_journal_db;
+
+-- Таблиця для зберігання даних користувачів (авторизація)
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    role ENUM('ROLE_TEACHER', 'ROLE_STUDENT') NOT NULL,
+    isActive BOOLEAN DEFAULT TRUE
+);
+
+-- Таблиця для зберігання студентів
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+-- Таблиця для зберігання викладачів
+CREATE TABLE teachers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    user_id INT,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
+);
+
+-- Таблиця для зберігання предметів
+CREATE TABLE subjects (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+-- Таблиця для зберігання оцінок
+CREATE TABLE grades (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    grade INT NOT NULL,
+    comment TEXT,
+    date DATE NOT NULL,
+    student_id INT,
+    teacher_id INT,
+    subject_id INT,
+    FOREIGN KEY (student_id) REFERENCES students(id) ON DELETE CASCADE,
+    FOREIGN KEY (teacher_id) REFERENCES teachers(id) ON DELETE SET NULL,
+    FOREIGN KEY (subject_id) REFERENCES subjects(id) ON DELETE CASCADE
+);
+
+-- Вставка даних в таблицю users
+INSERT INTO users (username, password, role, isActive) VALUES
+    ('teacher1', 'password1', 'ROLE_TEACHER', TRUE),
+    ('teacher2', 'password2', 'ROLE_TEACHER', TRUE),
+    ('teacher3', 'password3', 'ROLE_TEACHER', TRUE),
+    ('student1', 'password4', 'ROLE_STUDENT', TRUE),
+    ('student2', 'password5', 'ROLE_STUDENT', TRUE),
+    ('student3', 'password6', 'ROLE_STUDENT', TRUE),
+    ('student4', 'password7', 'ROLE_STUDENT', TRUE),
+    ('student5', 'password8', 'ROLE_STUDENT', TRUE),
+    ('student6', 'password9', 'ROLE_STUDENT', TRUE),
+    ('student7', 'password10', 'ROLE_STUDENT', TRUE),
+    ('student8', 'password11', 'ROLE_STUDENT', TRUE),
+    ('student9', 'password12', 'ROLE_STUDENT', TRUE),
+    ('student10', 'password13', 'ROLE_STUDENT', TRUE);
+
+-- Вставка даних в таблицю students
+INSERT INTO students (first_name, last_name, user_id) VALUES
+    ('Alice', 'Johnson', 4),
+    ('Bob', 'Smith', 5),
+    ('Carol', 'Davis', 6),
+    ('David', 'Wilson', 7),
+    ('Eve', 'Brown', 8),
+    ('Frank', 'Taylor', 9),
+    ('Grace', 'Anderson', 10),
+    ('Hannah', 'Thomas', 11),
+    ('Ivan', 'Jackson', 12),
+    ('Judy', 'White', 13);
+
+-- Вставка даних в таблицю teachers
+INSERT INTO teachers (first_name, last_name, user_id) VALUES
+    ('Dr. John', 'Doe', 1),
+    ('Dr. Emily', 'Clark', 2),
+    ('Dr. Sarah', 'Miller', 3);
+
+-- Вставка даних в таблицю subjects
+INSERT INTO subjects (name) VALUES
+    ('Computer Science'),
+    ('Data Structures'),
+    ('Algorithms'),
+    ('Database Systems'),
+    ('Software Engineering');
+
+-- Вставка даних в таблицю grades
+INSERT INTO grades (grade, comment, date, student_id, teacher_id, subject_id) VALUES
+    (85, 'Good understanding of basics', '2024-01-15', 1, 1, 1),
+    (90, 'Excellent work on data structures', '2024-01-16', 2, 1, 2),
+    (78, 'Needs improvement in algorithms', '2024-01-17', 3, 2, 3),
+    (88, 'Solid performance in databases', '2024-01-18', 4, 2, 4),
+    (92, 'Outstanding project', '2024-01-19', 5, 3, 5),
+    (76, 'Can improve coding skills', '2024-01-20', 6, 3, 1),
+    (84, 'Good data handling', '2024-01-21', 7, 1, 2),
+    (80, 'Average understanding', '2024-01-22', 8, 1, 3),
+    (89, 'Well done', '2024-01-23', 9, 2, 4),
+    (95, 'Excellent application of concepts', '2024-01-24', 10, 3, 5),
+    (85, 'Good understanding of basics', '2024-01-15', 1, 1, 1),
+    (78, 'Needs improvement on concepts', '2024-02-10', 1, 2, 2),
+    (90, 'Excellent project', '2024-03-12', 1, 3, 3),
+    (82, 'Solid performance', '2024-04-15', 1, 1, 4),
+    (88, 'Strong foundation', '2024-05-18', 1, 2, 5),
+    (90, 'Excellent work on data structures', '2024-01-16', 2, 1, 2),
+    (75, 'Improvement needed in algorithms', '2024-02-11', 2, 3, 3),
+    (80, 'Consistent performance', '2024-03-15', 2, 2, 4),
+    (88, 'Good understanding of systems', '2024-04-20', 2, 3, 5),
+    (92, 'Outstanding application of concepts', '2024-05-23', 2, 1, 1),
+    (78, 'Needs improvement in algorithms', '2024-01-17', 3, 2, 3),
+    (85, 'Good foundational knowledge', '2024-02-18', 3, 3, 1),
+    (88, 'Progress in data structures', '2024-03-22', 3, 1, 2),
+    (84, 'Solid grasp of database systems', '2024-04-25', 3, 2, 4),
+    (90, 'Great project work', '2024-05-29', 3, 3, 5),
+    (88, 'Solid performance in databases', '2024-01-18', 4, 2, 4),
+    (75, 'Requires focus on algorithms', '2024-02-19', 4, 1, 3),
+    (82, 'Good application of knowledge', '2024-03-25', 4, 3, 1),
+    (90, 'Excellent coding skills', '2024-04-28', 4, 1, 5),
+    (79, 'Average understanding', '2024-05-30', 4, 2, 2),
+    (92, 'Outstanding project', '2024-01-19', 5, 3, 5),
+    (88, 'Great foundation in basics', '2024-02-20', 5, 1, 1),
+    (85, 'Strong in database systems', '2024-03-27', 5, 2, 4),
+    (90, 'Very good understanding', '2024-04-30', 5, 1, 2),
+    (95, 'Excellent grasp of algorithms', '2024-05-31', 5, 3, 3),
+    (76, 'Can improve coding skills', '2024-01-20', 6, 3, 1),
+    (78, 'Steady progress in data structures', '2024-02-22', 6, 1, 2),
+    (84, 'Good in algorithms', '2024-03-30', 6, 2, 3),
+    (88, 'Average in systems', '2024-04-10', 6, 3, 4),
+    (81, 'Progressing well', '2024-05-15', 6, 1, 5),
+    (84, 'Good data handling', '2024-01-21', 7, 1, 2),
+    (88, 'Solid knowledge in algorithms', '2024-02-25', 7, 2, 3),
+    (85, 'Consistent performance', '2024-03-05', 7, 3, 1),
+    (90, 'Great understanding of basics', '2024-04-18', 7, 1, 5),
+    (89, 'Strong project work', '2024-05-25', 7, 2, 4),
+    (80, 'Average understanding', '2024-01-22', 8, 1, 3),
+    (82, 'Improvement in basics', '2024-02-28', 8, 3, 1),
+    (84, 'Good grasp on systems', '2024-03-07', 8, 2, 4),
+    (86, 'Consistent progress', '2024-04-15', 8, 1, 5),
+    (78, 'Needs improvement', '2024-05-30', 8, 3, 2),
+    (89, 'Well done', '2024-01-23', 9, 2, 4),
+    (88, 'Good in basics', '2024-02-10', 9, 1, 1),
+    (84, 'Solid in data structures', '2024-03-12', 9, 3, 2),
+    (90, 'Great improvement', '2024-04-21', 9, 1, 5),
+    (83, 'Satisfactory performance', '2024-05-25', 9, 3, 3),
+    (95, 'Excellent application of concepts', '2024-01-24', 10, 3, 5),
+    (90, 'Strong foundation', '2024-02-16', 10, 1, 1),
+    (88, 'Great knowledge in databases', '2024-03-14', 10, 2, 4),
+    (84, 'Very good in data structures', '2024-04-11', 10, 3, 2),
+    (90, 'Outstanding algorithms', '2024-05-29', 10, 2, 3);

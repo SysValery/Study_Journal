@@ -1,0 +1,317 @@
+Index: src/main/java/edu/itstep/journal/service/GradeServiceImpl.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.itstep.journal.service;\r\n\r\nimport edu.itstep.journal.entity.Grade;\r\nimport edu.itstep.journal.repository.GradeRepository;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Service;\r\nimport org.springframework.transaction.annotation.Transactional;\r\n\r\nimport java.util.List;\r\n\r\n@Service\r\npublic class GradeServiceImpl implements GradeService {\r\n\r\n    private final GradeRepository gradeRepository;\r\n\r\n    @Autowired\r\n    public GradeServiceImpl(GradeRepository gradeRepository) {\r\n        this.gradeRepository = gradeRepository;\r\n    }\r\n\r\n    @Override\r\n    @Transactional\r\n    public List<Grade> getAllGrades() {\r\n        return gradeRepository.findAll();\r\n    }\r\n\r\n\r\n    @Override\r\n    @Transactional\r\n    public Grade getGradeById(Long id) {\r\n        return gradeRepository.findById(id).orElse(null);\r\n    }\r\n\r\n    @Override\r\n    @Transactional\r\n    public void saveOrUpdateGrade(Grade grade) {\r\n        gradeRepository.save(grade);\r\n    }\r\n\r\n    @Override\r\n    public void deleteGradeById(Integer id) {\r\n\r\n    }\r\n\r\n    @Override\r\n    public List<Grade> findByStudentId(Integer studentId) {\r\n        return List.of();\r\n    }\r\n\r\n    @Override\r\n    public List<Grade> findByTeacherId(Integer teacherId) {\r\n        return List.of();\r\n    }\r\n\r\n    @Override\r\n    public List<Grade> findBySubjectId(Integer subjectId) {\r\n        return List.of();\r\n    }\r\n\r\n\r\n    @Transactional\r\n    @Override\r\n    public void deleteGradeById(Long id) {\r\n        gradeRepository.deleteById(id);\r\n    }\r\n\r\n    @Transactional\r\n    @Override\r\n    public List<Grade> findByStudentId(Long studentId) {\r\n        return gradeRepository.findByStudentId(studentId);\r\n    }\r\n\r\n    @Transactional\r\n    @Override\r\n    public List<Grade> findByTeacherId(Long teacherId) {\r\n        return gradeRepository.findByTeacherId(teacherId);\r\n    }\r\n\r\n    @Transactional\r\n    @Override\r\n    public List<Grade> findBySubjectId(Long subjectId) {\r\n        return gradeRepository.findBySubjectId(subjectId);\r\n    }\r\n\r\n//    @Override\r\n//    @Transactional\r\n//    public List<Grade> findByGradeDate(LocalDate date) {\r\n//        return gradeRepository.findByGradeDate(date);\r\n//    }\r\n//\r\n//    @Override\r\n//    @Transactional\r\n//    public List<Grade> findByGradeDate(String dateStr) {\r\n//        try {\r\n//            LocalDate date = LocalDate.parse(dateStr);\r\n//            return gradeRepository.findByGradeDate(date);\r\n//        } catch (Exception e) {\r\n//            e.printStackTrace();\r\n//            return new ArrayList<>(); // Повертаємо порожній список у разі помилки\r\n//        }\r\n//    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/edu/itstep/journal/service/GradeServiceImpl.java b/src/main/java/edu/itstep/journal/service/GradeServiceImpl.java
+--- a/src/main/java/edu/itstep/journal/service/GradeServiceImpl.java	(revision e575de5e372407c06b876eec45544ede674a30c0)
++++ b/src/main/java/edu/itstep/journal/service/GradeServiceImpl.java	(date 1730212123891)
+@@ -38,9 +38,12 @@
+     }
+ 
+     @Override
+-    public void deleteGradeById(Integer id) {
++    @Transactional
++    public void deleteGradeById(Long id) {
++        gradeRepository.deleteById(id);
++    }
+ 
+-    }
++
+ 
+     @Override
+     public List<Grade> findByStudentId(Integer studentId) {
+@@ -57,13 +60,6 @@
+         return List.of();
+     }
+ 
+-
+-    @Transactional
+-    @Override
+-    public void deleteGradeById(Long id) {
+-        gradeRepository.deleteById(id);
+-    }
+-
+     @Transactional
+     @Override
+     public List<Grade> findByStudentId(Long studentId) {
+@@ -82,21 +78,5 @@
+         return gradeRepository.findBySubjectId(subjectId);
+     }
+ 
+-//    @Override
+-//    @Transactional
+-//    public List<Grade> findByGradeDate(LocalDate date) {
+-//        return gradeRepository.findByGradeDate(date);
+-//    }
+-//
+-//    @Override
+-//    @Transactional
+-//    public List<Grade> findByGradeDate(String dateStr) {
+-//        try {
+-//            LocalDate date = LocalDate.parse(dateStr);
+-//            return gradeRepository.findByGradeDate(date);
+-//        } catch (Exception e) {
+-//            e.printStackTrace();
+-//            return new ArrayList<>(); // Повертаємо порожній список у разі помилки
+-//        }
+-//    }
++
+ }
+Index: src/main/java/edu/itstep/journal/service/GradeService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.itstep.journal.service;\r\n\r\nimport edu.itstep.journal.entity.Grade;\r\nimport org.springframework.transaction.annotation.Transactional;\r\n\r\nimport java.time.LocalDate;\r\nimport java.util.Date;\r\nimport java.util.List;\r\n\r\npublic interface GradeService {\r\n\r\n    // Метод для отримання всіх оцінок\r\n    List<Grade> getAllGrades();\r\n\r\n    // Метод для отримання оцінки за ID\r\n    Grade getGradeById(Long id);\r\n\r\n\r\n    // Метод для створення або оновлення оцінки\r\n    void saveOrUpdateGrade(Grade grade);\r\n\r\n    // Метод для видалення оцінки за ID\r\n    void deleteGradeById(Integer id);\r\n\r\n    // Метод для пошуку оцінок за ідентифікатором студента\r\n    List<Grade> findByStudentId(Integer studentId);\r\n\r\n    // Метод для пошуку оцінок за ідентифікатором викладача\r\n    List<Grade> findByTeacherId(Integer teacherId);\r\n\r\n    // Метод для пошуку оцінок за ідентифікатором предмета\r\n    List<Grade> findBySubjectId(Integer subjectId);\r\n\r\n    @Transactional\r\n    void deleteGradeById(Long id);\r\n\r\n    @Transactional\r\n    List<Grade> findByStudentId(Long studentId);\r\n\r\n    @Transactional\r\n    List<Grade> findByTeacherId(Long teacherId);\r\n\r\n    @Transactional\r\n    List<Grade> findBySubjectId(Long subjectId);\r\n\r\n//    //@Transactional\r\n//    List<Grade> findByGradeDate(LocalDate date);\r\n//\r\n//    // Метод для пошуку оцінок за датою\r\n//    List<Grade> findByGradeDate(String date);\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/edu/itstep/journal/service/GradeService.java b/src/main/java/edu/itstep/journal/service/GradeService.java
+--- a/src/main/java/edu/itstep/journal/service/GradeService.java	(revision e575de5e372407c06b876eec45544ede674a30c0)
++++ b/src/main/java/edu/itstep/journal/service/GradeService.java	(date 1730212463264)
+@@ -20,18 +20,7 @@
+     void saveOrUpdateGrade(Grade grade);
+ 
+     // Метод для видалення оцінки за ID
+-    void deleteGradeById(Integer id);
+-
+-    // Метод для пошуку оцінок за ідентифікатором студента
+-    List<Grade> findByStudentId(Integer studentId);
+ 
+-    // Метод для пошуку оцінок за ідентифікатором викладача
+-    List<Grade> findByTeacherId(Integer teacherId);
+-
+-    // Метод для пошуку оцінок за ідентифікатором предмета
+-    List<Grade> findBySubjectId(Integer subjectId);
+-
+-    @Transactional
+     void deleteGradeById(Long id);
+ 
+     @Transactional
+@@ -43,9 +32,15 @@
+     @Transactional
+     List<Grade> findBySubjectId(Long subjectId);
+ 
+-//    //@Transactional
+-//    List<Grade> findByGradeDate(LocalDate date);
+-//
+-//    // Метод для пошуку оцінок за датою
+-//    List<Grade> findByGradeDate(String date);
++
++    // Метод для пошуку оцінок за ідентифікатором студента
++    List<Grade> findByStudentId(Integer studentId);
++
++    // Метод для пошуку оцінок за ідентифікатором викладача
++    List<Grade> findByTeacherId(Integer teacherId);
++
++    // Метод для пошуку оцінок за ідентифікатором предмета
++    List<Grade> findBySubjectId(Integer subjectId);
++
++
+ }
+Index: src/main/java/edu/itstep/journal/controller/GradeController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package edu.itstep.journal.controller;\r\n\r\nimport edu.itstep.journal.entity.Grade;\r\nimport edu.itstep.journal.entity.Teacher;\r\nimport edu.itstep.journal.service.GradeService;\r\nimport edu.itstep.journal.service.StudentService;\r\nimport edu.itstep.journal.service.SubjectService;\r\nimport edu.itstep.journal.service.TeacherService;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.stereotype.Controller;\r\nimport org.springframework.ui.Model;\r\nimport org.springframework.web.bind.annotation.*;\r\n\r\nimport java.time.LocalDate;\r\n\r\n@Controller\r\n@RequestMapping(\"/grades\")\r\npublic class GradeController {\r\n\r\n    private final GradeService gradeService;\r\n    private final TeacherService teacherService;\r\n    private final StudentService studentService;\r\n    private final SubjectService subjectService;\r\n\r\n    @Autowired\r\n    public GradeController(GradeService gradeService, TeacherService teacherService, StudentService studentService, SubjectService subjectService) {\r\n        this.gradeService = gradeService;\r\n        this.teacherService = teacherService;\r\n        this.studentService = studentService;\r\n        this.subjectService = subjectService;\r\n    }\r\n\r\n    // Відображення форми редагування оцінки\r\n    @GetMapping(\"/edit/{id}\")\r\n    public String showEditForm(@PathVariable(\"id\") Long id, Model model) {\r\n        Grade grade = gradeService.getGradeById(id);\r\n        model.addAttribute(\"grade\", grade);\r\n        return \"edit-grade\";\r\n    }\r\n\r\n    // Обробка збереження змін після редагування\r\n    @PostMapping(\"/update\")\r\n    public String updateGrade(@ModelAttribute(\"grade\") Grade grade) {\r\n        if (grade.getDate() == null) {\r\n            grade.setDate(LocalDate.now());\r\n        }\r\n\r\n        // Перевірка, чи встановлений Teacher для Grade\r\n        if (grade.getTeacher() == null) {\r\n            throw new IllegalArgumentException(\"Teacher information is missing for the grade.\");\r\n        }\r\n\r\n        gradeService.saveOrUpdateGrade(grade);\r\n        Long teacherId = grade.getTeacher().getId();\r\n\r\n        return \"redirect:/teachers/\" + teacherId;\r\n    }\r\n\r\n    @GetMapping(\"/new\")\r\n    public String showCreateGradeForm(@RequestParam(\"teacherId\") Long teacherId, Model model) {\r\n        Grade grade = new Grade();\r\n\r\n        grade.setTeacher(teacherService.getTeacherById(teacherId)); // Встановлюємо викладача\r\n        model.addAttribute(\"grade\", grade);\r\n        model.addAttribute(\"students\", studentService.getAllStudents()); // Отримуємо всіх студентів для вибору\r\n        model.addAttribute(\"subjects\", subjectService.getAllSubjects()); // Отримуємо всі предмети для вибору\r\n        return \"create-grade\";\r\n    }\r\n\r\n    @PostMapping(\"/save\")\r\n    public String saveGrade(@ModelAttribute(\"grade\") Grade grade) {\r\n        gradeService.saveOrUpdateGrade(grade);\r\n        Long teacherId = grade.getTeacher().getId();\r\n        return \"redirect:/teachers/\" + teacherId;\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/edu/itstep/journal/controller/GradeController.java b/src/main/java/edu/itstep/journal/controller/GradeController.java
+--- a/src/main/java/edu/itstep/journal/controller/GradeController.java	(revision e575de5e372407c06b876eec45544ede674a30c0)
++++ b/src/main/java/edu/itstep/journal/controller/GradeController.java	(date 1730213760468)
+@@ -1,7 +1,6 @@
+ package edu.itstep.journal.controller;
+ 
+ import edu.itstep.journal.entity.Grade;
+-import edu.itstep.journal.entity.Teacher;
+ import edu.itstep.journal.service.GradeService;
+ import edu.itstep.journal.service.StudentService;
+ import edu.itstep.journal.service.SubjectService;
+@@ -38,18 +37,44 @@
+         return "edit-grade";
+     }
+ 
++//    @GetMapping("/delete/{id}")
++//    public String deleteGrade(@PathVariable("id") Long id) {
++//        System.out.println("Deleting grade with ID: " + id);
++//        Grade grade = gradeService.getGradeById(id);
++//        Long teacherId = grade.getTeacher().getId(); // Отримуємо ID викладача для перенаправлення
++//        gradeService.deleteGradeById(id);
++//        System.out.println("Deleting is done grade with ID: " + id);
++//        return "redirect:/teachers/" + teacherId;
++//    }
++
++    @PostMapping("/delete")
++    public String deleteGrade(@ModelAttribute("grade") Grade grade) {
++        Long gradeId = grade.getId();
++        System.out.println("Deleting grade with ID: " + gradeId);
++
++        // Отримуємо ID викладача перед видаленням, щоб перенаправити після видалення
++        Long teacherId = grade.getTeacher().getId();
++
++        // Видаляємо оцінку
++        gradeService.deleteGradeById(gradeId);
++
++        System.out.println("Deleting is done for grade with ID: " + gradeId);
++
++        // Повертаємося на сторінку деталей викладача
++        return "redirect:/teachers/" + teacherId;
++    }
++
++
+     // Обробка збереження змін після редагування
+     @PostMapping("/update")
+     public String updateGrade(@ModelAttribute("grade") Grade grade) {
+         if (grade.getDate() == null) {
+             grade.setDate(LocalDate.now());
+         }
+-
+         // Перевірка, чи встановлений Teacher для Grade
+         if (grade.getTeacher() == null) {
+             throw new IllegalArgumentException("Teacher information is missing for the grade.");
+         }
+-
+         gradeService.saveOrUpdateGrade(grade);
+         Long teacherId = grade.getTeacher().getId();
+ 
+@@ -73,5 +98,4 @@
+         Long teacherId = grade.getTeacher().getId();
+         return "redirect:/teachers/" + teacherId;
+     }
+-
+ }
+Index: src/main/webapp/WEB-INF/views/teacher-detail.jsp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><%@ page contentType=\"text/html;charset=UTF-8\" language=\"java\" %>\r\n<%@ taglib uri=\"http://java.sun.com/jsp/jstl/core\" prefix=\"c\" %>\r\n<!DOCTYPE html>\r\n<html>\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <title>Деталі викладача</title>\r\n</head>\r\n<body>\r\n\r\n<h1>Деталі викладача</h1>\r\n\r\n<p><strong>ID:</strong> ${teacher.id}</p>\r\n<p><strong>Ім'я:</strong> ${teacher.firstName}</p>\r\n<p><strong>Прізвище:</strong> ${teacher.lastName}</p>\r\n<%--<p><strong>Username:</strong> ${student.lastName}</p>--%>\r\n\r\n<!-- Кнопка для додавання нової оцінки -->\r\n<form action=\"/grades/new\" method=\"get\">\r\n    <input type=\"hidden\" name=\"teacherId\" value=\"${teacher.id}\">\r\n    <button type=\"submit\">Додати оцінку</button>\r\n</form>\r\n\r\n\r\n<h2>Оцінки, виставлені викладачем</h2>\r\n<table border=\"1\">\r\n    <thead>\r\n    <tr>\r\n        <th>Ім'я студента</th>\r\n        <th>Прізвище студента</th>\r\n        <th>Предмет</th>\r\n        <th>Оцінка</th>\r\n        <th>Коментар</th>\r\n    </tr>\r\n    </thead>\r\n    <tbody>\r\n    <c:forEach var=\"grade\" items=\"${teacher.grades}\">\r\n        <tr>\r\n            <td>${grade.student.firstName}</td>\r\n            <td>${grade.student.lastName}</td>\r\n            <td>${grade.subject.name}</td>\r\n            <td>${grade.grade}</td>\r\n            <td>${grade.comment}</td>\r\n            <td><a href=\"/grades/edit/${grade.id}\">Редагувати</a></td>\r\n        </tr>\r\n    </c:forEach>\r\n    </tbody>\r\n</table>\r\n\r\n</body>\r\n</html>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/webapp/WEB-INF/views/teacher-detail.jsp b/src/main/webapp/WEB-INF/views/teacher-detail.jsp
+--- a/src/main/webapp/WEB-INF/views/teacher-detail.jsp	(revision e575de5e372407c06b876eec45544ede674a30c0)
++++ b/src/main/webapp/WEB-INF/views/teacher-detail.jsp	(date 1730213950494)
+@@ -41,7 +41,13 @@
+             <td>${grade.subject.name}</td>
+             <td>${grade.grade}</td>
+             <td>${grade.comment}</td>
+-            <td><a href="/grades/edit/${grade.id}">Редагувати</a></td>
++            <td>
++                <a href="/grades/edit/${grade.id}">Редагувати</a>
++                <form action="/grades/delete" method="post" style="display: inline;">
++                    <input type="hidden" name="id" value="ID_оцінки" />
++                    <button type="submit">Видалити</button>
++                </form>
++            </td>
+         </tr>
+     </c:forEach>
+     </tbody>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ArtifactsWorkspaceSettings\">\r\n    <artifacts-to-build>\r\n      <artifact name=\"Study_Journal:war exploded\" />\r\n    </artifacts-to-build>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"9e8ccc82-15a2-47c9-874e-878a16d84a3f\" name=\"Changes\" comment=\"\">\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/dataSources.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/.idea/uiDesigner.xml\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/sql_script.txt\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/SecurityConfig.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/SecurityInitializer.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/WebConfig.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/GradeController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/HomeController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/LoginController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/dto/GradeDTO.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/dto/StudentWithGradesDTO.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/User.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeService.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeServiceImpl.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/StudentService.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/StudentServiceImpl.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/SubjectService.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/SubjectServiceImpl.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/TeacherService.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/TeacherServiceImpl.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/webapp/WEB-INF/views/create-grade.jsp\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/webapp/WEB-INF/views/edit-grade.jsp\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/webapp/WEB-INF/views/student-detail.jsp\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/webapp/WEB-INF/views/students.jsp\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/webapp/WEB-INF/views/teacher-detail.jsp\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/webapp/WEB-INF/views/teachers.jsp\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/main/webapp/WEB-INF/views/test.jsp\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/technical_task.txt\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pom.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/AppConfig.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/AppConfig.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/StudentController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/StudentController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/SubjectController.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/TeacherController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/TeacherController.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Grade.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Grade.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Student.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Student.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Subject.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Subject.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Teacher.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Teacher.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/GradeRepository.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/GradeRepository.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/GradeRepositoryImpl.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/StudentRepository.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/StudentRepository.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/StudentRepositoryImpl.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/SubjectRepository.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/SubjectRepository.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/SubjectRepositoryImpl.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/TeacherRepository.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/TeacherRepository.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/TeacherRepositoryImpl.java\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n        <option value=\"Jsp File\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;SysValery&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/SysValery/Study_Journal.git&quot;,\r\n    &quot;accountId&quot;: &quot;8d35dfd1-9847-4759-b45a-57bef3e463ff&quot;\r\n  }\r\n}</component>\r\n  <component name=\"LogFilters\">\r\n    <option name=\"FILTER_ERRORS\" value=\"false\" />\r\n    <option name=\"FILTER_WARNINGS\" value=\"false\" />\r\n    <option name=\"FILTER_INFO\" value=\"true\" />\r\n    <option name=\"FILTER_DEBUG\" value=\"true\" />\r\n    <option name=\"CUSTOM_FILTER\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 0\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2nsjTsSPdDwrDIMhOl1t2bpehrA\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor\": \"Run\",\r\n    \"Maven.Study_Journal [clean,install].executor\": \"Run\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"Tomcat Server.Tomcat 9.0.95.executor\": \"Run\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/JavaKursova/Study_Journal/src/main/java/edu/itstep/journal/configuration\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"project.structure.last.edited\": \"Modules\",\r\n    \"project.structure.proportion\": \"0.0\",\r\n    \"project.structure.side.proportion\": \"0.0\",\r\n    \"settings.editor.selected.configurable\": \"reference.settings.project.maven.testRunning\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  },\r\n  \"keyToStringList\": {\r\n    \"DatabaseDriversLRU\": [\r\n      \"mysql\"\r\n    ]\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\JavaKursova\\Study_Journal\\src\\main\\java\\edu\\itstep\\journal\\configuration\" />\r\n      <recent name=\"C:\\JavaKursova\\Study_Journal\\src\\main\\webapp\\WEB-INF\" />\r\n      <recent name=\"D:\\WinUsers\\Ksu\\Documents\\GitHub\\Study_Journal\\src\\main\\java\\edu\\itstep\\journal\\repository\" />\r\n      <recent name=\"D:\\WinUsers\\Ksu\\Documents\\GitHub\\Study_Journal\\src\\main\\java\\edu\\itstep\\journal\\entity\" />\r\n      <recent name=\"D:\\WinUsers\\Ksu\\Documents\\GitHub\\Study_Journal\\src\\main\\java\\edu\\itstep\\journal\\controller\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"C:\\JavaKursova\\Study_Journal\\src\\main\\webapp\\WEB-INF\\views\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunAnythingCache\">\r\n    <option name=\"myCommands\">\r\n      <command value=\"mvn clean install\" />\r\n    </option>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Tomcat 9.0.95\" type=\"#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory\" factoryName=\"Local\" APPLICATION_SERVER_NAME=\"Tomcat 9.0.95\" ALTERNATIVE_JRE_ENABLED=\"false\" nameIsGenerated=\"true\">\r\n      <option name=\"UPDATING_POLICY\" value=\"restart-server\" />\r\n      <deployment>\r\n        <artifact name=\"Study_Journal:war exploded\">\r\n          <settings>\r\n            <option name=\"CONTEXT_PATH\" value=\"/\" />\r\n          </settings>\r\n        </artifact>\r\n      </deployment>\r\n      <server-settings>\r\n        <option name=\"BASE_DIRECTORY_NAME\" value=\"34b83b00-37be-4c8e-be9c-bf8a647e2a81\" />\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat Catalina\" />\r\n      <predefined_log_file id=\"Tomcat Manager\" />\r\n      <predefined_log_file id=\"Tomcat Host Manager\" />\r\n      <predefined_log_file id=\"Tomcat Localhost Access\" />\r\n      <RunnerSettings RunnerId=\"Debug\">\r\n        <option name=\"DEBUG_PORT\" value=\"9372\" />\r\n      </RunnerSettings>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Cover\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Debug\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Profile\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Run\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n        <option name=\"BuildArtifacts\" enabled=\"true\">\r\n          <artifact name=\"Study_Journal:war exploded\" />\r\n        </option>\r\n      </method>\r\n    </configuration>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23726.103\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23726.103\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"9e8ccc82-15a2-47c9-874e-878a16d84a3f\" name=\"Changes\" comment=\"\" />\r\n      <created>1729768690038</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1729768690038</updated>\r\n      <workItem from=\"1729768691130\" duration=\"7457000\" />\r\n      <workItem from=\"1729969856857\" duration=\"6120000\" />\r\n      <workItem from=\"1729975994483\" duration=\"2925000\" />\r\n      <workItem from=\"1730046336555\" duration=\"3361000\" />\r\n      <workItem from=\"1730049777160\" duration=\"5485000\" />\r\n      <workItem from=\"1730057300106\" duration=\"5805000\" />\r\n      <workItem from=\"1730145977286\" duration=\"8407000\" />\r\n      <workItem from=\"1730177213909\" duration=\"11645000\" />\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"OPEN_GENERIC_TABS\">\r\n      <map>\r\n        <entry key=\"c5596aff-6214-4f39-a8d2-72dc681371c2\" value=\"TOOL_WINDOW\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State>\r\n              <option name=\"FILTERS\">\r\n                <map>\r\n                  <entry key=\"branch\">\r\n                    <value>\r\n                      <list>\r\n                        <option value=\"origin/master\" />\r\n                      </list>\r\n                    </value>\r\n                  </entry>\r\n                </map>\r\n              </option>\r\n            </State>\r\n          </value>\r\n        </entry>\r\n        <entry key=\"c5596aff-6214-4f39-a8d2-72dc681371c2\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <default-breakpoints>\r\n        <breakpoint enabled=\"true\" type=\"java-exception\" />\r\n        <breakpoint enabled=\"true\" type=\"javascript-exception\" />\r\n      </default-breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision e575de5e372407c06b876eec45544ede674a30c0)
++++ b/.idea/workspace.xml	(date 1730214110480)
+@@ -9,55 +9,12 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="9e8ccc82-15a2-47c9-874e-878a16d84a3f" name="Changes" comment="">
+-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/sql_script.txt" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/SecurityConfig.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/SecurityInitializer.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/WebConfig.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/GradeController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/HomeController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/LoginController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/dto/GradeDTO.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/dto/StudentWithGradesDTO.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/User.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeService.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeServiceImpl.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/StudentService.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/StudentServiceImpl.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/SubjectService.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/SubjectServiceImpl.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/TeacherService.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/TeacherServiceImpl.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/create-grade.jsp" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/edit-grade.jsp" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/student-detail.jsp" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/students.jsp" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/teacher-detail.jsp" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/teachers.jsp" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/test.jsp" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/technical_task.txt" afterDir="false" />
++    <list default="true" id="9e8ccc82-15a2-47c9-874e-878a16d84a3f" name="Changes" comment="Initial commit">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/AppConfig.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/StudentController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/SubjectController.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/TeacherController.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Grade.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Student.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Subject.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Teacher.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/GradeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/GradeRepository.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/GradeRepositoryImpl.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/StudentRepository.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/StudentRepositoryImpl.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/SubjectRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/SubjectRepository.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/SubjectRepositoryImpl.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/TeacherRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/TeacherRepository.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/TeacherRepositoryImpl.java" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/GradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/GradeController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeService.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeServiceImpl.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/teacher-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/teacher-detail.jsp" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -73,6 +30,7 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="PUSH_AUTO_UPDATE" value="true" />
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="GitHubPullRequestSearchHistory">{
+@@ -260,8 +218,17 @@
+       <workItem from="1730049777160" duration="5485000" />
+       <workItem from="1730057300106" duration="5805000" />
+       <workItem from="1730145977286" duration="8407000" />
+-      <workItem from="1730177213909" duration="11645000" />
++      <workItem from="1730177213909" duration="16108000" />
++    </task>
++    <task id="LOCAL-00001" summary="Initial commit">
++      <option name="closed" value="true" />
++      <created>1730206772166</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1730206772166</updated>
+     </task>
++    <option name="localTasksCounter" value="2" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -299,6 +266,10 @@
+         </entry>
+       </map>
+     </option>
++  </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="Initial commit" />
++    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+   </component>
+   <component name="XDebuggerManager">
+     <breakpoint-manager>
