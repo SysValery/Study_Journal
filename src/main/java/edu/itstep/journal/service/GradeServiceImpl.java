@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -24,7 +25,6 @@ public class GradeServiceImpl implements GradeService {
         return gradeRepository.findAll();
     }
 
-
     @Override
     @Transactional
     public Grade getGradeById(Long id) {
@@ -37,31 +37,16 @@ public class GradeServiceImpl implements GradeService {
         gradeRepository.save(grade);
     }
 
-    @Override
-    public void deleteGradeById(Integer id) {
-
-    }
-
-    @Override
-    public List<Grade> findByStudentId(Integer studentId) {
-        return List.of();
-    }
+//    @Override
+//    @Transactional
+//    public void deleteGradeById(Long id) {
+//        gradeRepository.deleteGradeById(id);
+//    }
 
     @Override
-    public List<Grade> findByTeacherId(Integer teacherId) {
-        return List.of();
-    }
-
-    @Override
-    public List<Grade> findBySubjectId(Integer subjectId) {
-        return List.of();
-    }
-
-
     @Transactional
-    @Override
     public void deleteGradeById(Long id) {
-        gradeRepository.deleteById(id);
+        gradeRepository.deleteByIdWithQuery(id);
     }
 
     @Transactional
@@ -82,21 +67,16 @@ public class GradeServiceImpl implements GradeService {
         return gradeRepository.findBySubjectId(subjectId);
     }
 
-//    @Override
-//    @Transactional
-//    public List<Grade> findByGradeDate(LocalDate date) {
-//        return gradeRepository.findByGradeDate(date);
-//    }
-//
-//    @Override
-//    @Transactional
-//    public List<Grade> findByGradeDate(String dateStr) {
-//        try {
-//            LocalDate date = LocalDate.parse(dateStr);
-//            return gradeRepository.findByGradeDate(date);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ArrayList<>(); // Повертаємо порожній список у разі помилки
-//        }
-//    }
+    @Transactional
+    @Override
+    public List<Grade> getFilteredGrades(Long teacherId, Long subjectId, String startDate, String endDate) {
+        // Якщо startDate порожній, встановлюємо його на 1 січня 2000 року
+        LocalDate start = (startDate != null && !startDate.isEmpty()) ? LocalDate.parse(startDate) : LocalDate.of(2000, 1, 1);
+
+        // Якщо endDate порожній, встановлюємо його на сьогоднішню дату
+        LocalDate end = (endDate != null && !endDate.isEmpty()) ? LocalDate.parse(endDate) : LocalDate.now();
+
+        return gradeRepository.findFilteredGrades(teacherId, subjectId, start, end);
+    }
+
 }

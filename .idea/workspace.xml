@@ -9,55 +9,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9e8ccc82-15a2-47c9-874e-878a16d84a3f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/sql_script.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/SecurityInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/WebConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/GradeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/HomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/dto/GradeDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/dto/StudentWithGradesDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/StudentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/StudentServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/SubjectService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/SubjectServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/TeacherService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/TeacherServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/create-grade.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/edit-grade.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/student-detail.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/students.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/teacher-detail.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/teachers.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/test.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/technical_task.txt" afterDir="false" />
+    <list default="true" id="9e8ccc82-15a2-47c9-874e-878a16d84a3f" name="Changes" comment="Initial commit">
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/css/student_styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fc887ef7-8d81-423f-9489-93343d54b4d8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fc887ef7-8d81-423f-9489-93343d54b4d8.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/AppConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/GradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/GradeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/StudentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/SubjectController.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/TeacherController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/dto/GradeDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/dto/StudentWithGradesDTO.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Grade.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Subject.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Teacher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/GradeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/GradeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/GradeRepositoryImpl.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/StudentRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/StudentRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/SubjectRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/SubjectRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/SubjectRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/TeacherRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/TeacherRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/TeacherRepositoryImpl.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/StudentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/StudentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/StudentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/SubjectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/SubjectServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/create-grade.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/create-grade.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/student-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/student-detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/teacher-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/teacher-detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/test.jsp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,12 +44,18 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Jsp File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -113,7 +96,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/JavaKursova/Study_Journal/src/main/java/edu/itstep/journal/configuration",
+    "last_opened_file_path": "D:/kursova/Study_Journal",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -261,7 +244,21 @@
       <workItem from="1730057300106" duration="5805000" />
       <workItem from="1730145977286" duration="8407000" />
       <workItem from="1730177213909" duration="11645000" />
+      <workItem from="1730223440228" duration="83000" />
+      <workItem from="1730223531337" duration="9342000" />
+      <workItem from="1730281012776" duration="7348000" />
+      <workItem from="1730293850950" duration="135000" />
+      <workItem from="1730377381334" duration="223000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1730214159952</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730214159952</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,6 +296,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

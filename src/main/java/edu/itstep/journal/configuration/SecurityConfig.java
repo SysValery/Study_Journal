@@ -37,12 +37,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/teachers/**").hasRole("TEACHER")
                 .antMatchers("/students/**").hasRole("STUDENT")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
                 .loginPage("/login")
+                .failureUrl("/login?error=true")
                 .successHandler(authenticationSuccessHandler())  // Додаємо SuccessHandler
                 .permitAll()
                 .and()
@@ -51,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
     }
 
@@ -64,27 +66,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 String role = authentication.getAuthorities().iterator().next().getAuthority();
 
                 if (role.equals("ROLE_STUDENT")) {
-                    // Отримуємо ідентифікатор студента з бази даних
                     String username = authentication.getName();
                     Long studentId = studentRepository.getStudentIdByUsername(username);
                     response.sendRedirect("/students/" + studentId);
                 } else if (role.equals("ROLE_TEACHER")) {
-                    // Отримуємо ідентифікатор студента з бази даних
                     String username = authentication.getName();
                     Long teacherId = teacherRepository.getTeacherIdByUsername(username);
                     response.sendRedirect("/teachers/" + teacherId);
+                } else if (role.equals("ROLE_ADMIN")) {
+                    response.sendRedirect("/admin/home"); // Перенаправлення для адміністратора
                 }
             }
         };
     }
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
-                .jdbcAuthentication()
-                .passwordEncoder(passwordEncoder())
-                .dataSource(dataSource)
-                .usersByUsernameQuery("select username, password, isActive from users where username = ?")  // Використовуємо isActive замість enabled
-                .authoritiesByUsernameQuery("select username, role from users where username = ?");
+        @Override
+        protected void configure (AuthenticationManagerBuilder auth) throws Exception {
+            auth
+                    .jdbcAuthentication()
+                    .passwordEncoder(passwordEncoder())
+                    .dataSource(dataSource)
+                    .usersByUsernameQuery("select username, password, isActive from users where username = ?")  // Використовуємо isActive замість enabled
+                    .authoritiesByUsernameQuery("select username, role from users where username = ?");
+        }
+
     }
-}

@@ -13,12 +13,14 @@ import java.util.List;
 @Controller
 @RequestMapping("/students")
 public class StudentController {
+
     private final StudentService studentService;
 
     @Autowired
     public StudentController(StudentService studentService) {
         this.studentService = studentService;
     }
+
 
     // Отримати всіх студентів
     @GetMapping
@@ -28,14 +30,19 @@ public class StudentController {
         return "students";
     }
 
-    // Отримати студента за ID
-    @GetMapping("/{id}")
-    public String getStudentById(@PathVariable("id") Long id, Model model) {
-        Student student = studentService.getStudentById(id);
-        System.out.println("Отриманий студент: " + student);
+     @GetMapping("/{id}")
+    public String getStudentById(@PathVariable Long id,
+                                     @RequestParam(required = false, defaultValue = "subject") String sortField,
+                                     @RequestParam(required = false, defaultValue = "asc") String sortDir,
+                                     Model model) {
+
+        Student student = studentService.getStudentById(id, sortField, sortDir);
         model.addAttribute("student", student);
+        model.addAttribute("sortField", sortField);
+        model.addAttribute("sortDir", sortDir);
         return "student-detail";
     }
+
 
     // Створення або оновлення студента
     @PostMapping("/save")

@@ -39,7 +39,7 @@
     <button type="submit">Зберегти</button>
 </form>
 
-<a href="/teachers/${grade.teacher.id}">Повернутися</a>
+<a href="/teachers/${teacherId}">Повернутися</a>
 
 </body>
 </html>

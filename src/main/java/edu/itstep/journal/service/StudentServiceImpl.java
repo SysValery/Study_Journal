@@ -1,11 +1,13 @@
 package edu.itstep.journal.service;
 
+import edu.itstep.journal.entity.Grade;
 import edu.itstep.journal.entity.Student;
 import edu.itstep.journal.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -24,17 +26,47 @@ public class StudentServiceImpl implements StudentService {
         return studentRepository.findAll();
     }
 
-    @Override
-    public Student getStudentById(Integer id) {
-        return null;
-    }
+    //@Override
+//    public Student getStudentById(Integer id) {
+//        return null;
+//    }
 
+
+//    @Override
+//    @Transactional
+//    public Student getStudentById(Long id) {
+//        return studentRepository.findById(id).orElse(null);
+//    }
 
     @Override
     @Transactional
-    public Student getStudentById(Long id) {
-        return studentRepository.findById(id).orElse(null);
+    public Student getStudentById(Long id, String sortField, String sortDir) {
+        Student student = studentRepository.findById(id).orElse(null);
+
+        if (student != null) {
+            Comparator<Grade> comparator;
+
+            // Вибираємо компаратор для сортування
+            if ("subject".equals(sortField)) {
+                comparator = Comparator.comparing((Grade grade) -> grade.getSubject().getName());
+            } else if ("date".equals(sortField)) {
+                comparator = Comparator.comparing((Grade grade) -> grade.getDate());
+            } else {
+                comparator = Comparator.comparing(Grade::getGrade); // Default sorting if needed
+            }
+            // Якщо напрямок "desc", застосовуємо обернений компаратор
+            if ("desc".equals(sortDir)) {
+                comparator = comparator.reversed();
+            }
+
+            // Застосовуємо обраний компаратор до списку оцінок
+            student.getGrades().sort(comparator);
+        }
+
+        return student;
     }
+
+
 
     @Override
     @Transactional

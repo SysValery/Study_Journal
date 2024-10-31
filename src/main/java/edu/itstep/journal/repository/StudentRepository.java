@@ -25,4 +25,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     @Query("SELECT s FROM Student s JOIN FETCH s.grades")
     List<Student> findAllWithGrades();
 
+    Student getStudentById(Long id);
+
 }

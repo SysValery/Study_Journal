@@ -18,6 +18,7 @@ public class SubjectServiceImpl implements SubjectService {
         this.subjectRepository = subjectRepository;
     }
 
+
     @Override
     @Transactional
     public List<Subject> getAllSubjects() {

@@ -10,11 +10,14 @@ public interface StudentService {
     // Метод для отримання всіх студентів
     List<Student> getAllStudents();
 
-    // Метод для отримання студента за ID
-    Student getStudentById(Integer id);
-
     @Transactional
-    Student getStudentById(Long id);
+    Student getStudentById(Long id, String sortField, String sortDir);
+
+    // Метод для отримання студента за ID
+    //Student getStudentById(Integer id);
+
+//    @Transactional
+//    Student getStudentById(Long id);
 
     // Метод для створення або оновлення студента
     void saveOrUpdateStudent(Student student);
