@@ -10,31 +10,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9e8ccc82-15a2-47c9-874e-878a16d84a3f" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/AdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/css/student_styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fc887ef7-8d81-423f-9489-93343d54b4d8.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/fc887ef7-8d81-423f-9489-93343d54b4d8.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/grade-form.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/resources/css/grade-form.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/fc887ef7-8d81-423f-9489-93343d54b4d8.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql_script.txt" beforeDir="false" afterPath="$PROJECT_DIR$/sql_script.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/AppConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/AppConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/GradeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/GradeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/configuration/WebConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/AdminController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/GradeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/HomeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/StudentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/StudentController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/TeacherController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/controller/TeacherController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/dto/GradeDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/dto/StudentWithGradesDTO.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Grade.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Grade.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Student.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Subject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Subject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Teacher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/Teacher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/entity/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/GradeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/GradeRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/StudentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/StudentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/SubjectRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/SubjectRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/TeacherRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/repository/TeacherRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/GradeServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/StudentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/StudentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/StudentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/StudentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/SubjectService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/SubjectService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/SubjectServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/SubjectServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/create-grade.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/create-grade.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/TeacherService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/TeacherService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/TeacherServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/itstep/journal/service/TeacherServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/css/student_styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/create-grade.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/edit-grade.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/login.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/student-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/student-detail.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/students.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/teacher-detail.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/teacher-detail.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/test.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/teachers.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,8 +60,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -86,49 +102,53 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "Maven.Study_Journal [clean,install].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Tomcat Server.Tomcat 9.0.95.executor": "Run",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/kursova/Study_Journal",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.testRunning",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Study_Journal [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.Study_Journal [dependency:tree].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Tomcat Server.Tomcat 9.0.95.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/JavaKursova/Study_Journal/src/main/webapp/resources/css&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\JavaKursova\Study_Journal\src\main\webapp\resources\css" />
       <recent name="C:\JavaKursova\Study_Journal\src\main\java\edu\itstep\journal\configuration" />
       <recent name="C:\JavaKursova\Study_Journal\src\main\webapp\WEB-INF" />
       <recent name="D:\WinUsers\Ksu\Documents\GitHub\Study_Journal\src\main\java\edu\itstep\journal\repository" />
       <recent name="D:\WinUsers\Ksu\Documents\GitHub\Study_Journal\src\main\java\edu\itstep\journal\entity" />
-      <recent name="D:\WinUsers\Ksu\Documents\GitHub\Study_Journal\src\main\java\edu\itstep\journal\controller" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\kursova\Study_Journal\src\main\webapp\resources" />
+      <recent name="D:\kursova\Study_Journal\src\main\webapp\WEB-INF\resourses" />
       <recent name="C:\JavaKursova\Study_Journal\src\main\webapp\WEB-INF\views" />
     </key>
   </component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="mvn clean install" />
+      <command value="mvn dependency:tree" />
     </option>
   </component>
   <component name="RunManager">
@@ -249,6 +269,17 @@
       <workItem from="1730281012776" duration="7348000" />
       <workItem from="1730293850950" duration="135000" />
       <workItem from="1730377381334" duration="223000" />
+      <workItem from="1730377617541" duration="6421000" />
+      <workItem from="1730396784139" duration="588000" />
+      <workItem from="1730397410897" duration="16788000" />
+      <workItem from="1730461434154" duration="8237000" />
+      <workItem from="1730712534951" duration="6548000" />
+      <workItem from="1730723778796" duration="5980000" />
+      <workItem from="1730730731205" duration="724000" />
+      <workItem from="1730731527099" duration="3839000" />
+      <workItem from="1730738792635" duration="4999000" />
+      <workItem from="1730784171148" duration="7000" />
+      <workItem from="1730789706228" duration="1986000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <option name="closed" value="true" />
@@ -258,7 +289,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730214159952</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1730377653645</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730377653645</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

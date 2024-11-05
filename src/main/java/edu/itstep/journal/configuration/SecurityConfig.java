@@ -14,11 +14,9 @@ import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-import java.io.IOException;
 
 @Configuration
 @EnableWebSecurity
@@ -26,7 +24,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private DataSource dataSource;
-
     @Autowired
     private StudentRepository studentRepository;
     @Autowired
@@ -37,19 +34,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN")
-                .antMatchers("/teachers/**").hasRole("TEACHER")
-                .antMatchers("/students/**").hasRole("STUDENT")
-                .anyRequest().authenticated()
+                    .antMatchers("/login").permitAll() // Дозвіл на доступ до кореневого маршруту та сторінки авторизації
+                    .antMatchers("/teachers/**").hasRole("TEACHER")
+                    .antMatchers("/students/**").hasRole("STUDENT")
+                    .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .failureUrl("/login?error=true")
-                .successHandler(authenticationSuccessHandler())  // Додаємо SuccessHandler
-                .permitAll()
+                    .loginPage("/login")                   // Налаштування сторінки авторизації
+                    .failureUrl("/login?error=true")
+                    .successHandler(authenticationSuccessHandler())
+                    .permitAll()
                 .and()
-                .logout()
-                .permitAll();
+                    .logout()
+                        .logoutUrl("/logout")                 // URL для запиту на вихід (можна залишити стандартний /logout)
+                        .logoutSuccessUrl("/login?logout=true") // Перенаправлення після виходу
+                        .invalidateHttpSession(true)           // Інвалідація сесії
+                        .deleteCookies("JSESSIONID")
+                        .permitAll();
     }
 
     @Bean
@@ -59,35 +60,29 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public AuthenticationSuccessHandler authenticationSuccessHandler() {
-        return new AuthenticationSuccessHandler() {
-            @Override
-            public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication)
-                    throws IOException, ServletException {
-                String role = authentication.getAuthorities().iterator().next().getAuthority();
+        return (HttpServletRequest request, HttpServletResponse response, Authentication authentication) -> {
+            String role = authentication.getAuthorities().iterator().next().getAuthority();
+            String username = authentication.getName();
 
-                if (role.equals("ROLE_STUDENT")) {
-                    String username = authentication.getName();
-                    Long studentId = studentRepository.getStudentIdByUsername(username);
-                    response.sendRedirect("/students/" + studentId);
-                } else if (role.equals("ROLE_TEACHER")) {
-                    String username = authentication.getName();
-                    Long teacherId = teacherRepository.getTeacherIdByUsername(username);
-                    response.sendRedirect("/teachers/" + teacherId);
-                } else if (role.equals("ROLE_ADMIN")) {
-                    response.sendRedirect("/admin/home"); // Перенаправлення для адміністратора
-                }
+            if (role.equals("ROLE_STUDENT")) {
+                Long studentId = studentRepository.getStudentIdByUsername(username);
+                response.sendRedirect("/students/" + studentId);
+            } else if (role.equals("ROLE_TEACHER")) {
+                Long teacherId = teacherRepository.getTeacherIdByUsername(username);
+                response.sendRedirect("/teachers/" + teacherId);
+            } else {
+                response.sendRedirect("/login"); // Перенаправлення на сторінку за замовчуванням
             }
         };
     }
 
-        @Override
-        protected void configure (AuthenticationManagerBuilder auth) throws Exception {
-            auth
-                    .jdbcAuthentication()
-                    .passwordEncoder(passwordEncoder())
-                    .dataSource(dataSource)
-                    .usersByUsernameQuery("select username, password, isActive from users where username = ?")  // Використовуємо isActive замість enabled
-                    .authoritiesByUsernameQuery("select username, role from users where username = ?");
-        }
-
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth
+                .jdbcAuthentication()
+                .passwordEncoder(passwordEncoder())
+                .dataSource(dataSource)
+                .usersByUsernameQuery("select username, password, isActive from users where username = ?")
+                .authoritiesByUsernameQuery("select username, role from users where username = ?");
     }
+}

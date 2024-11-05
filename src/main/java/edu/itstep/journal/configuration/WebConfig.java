@@ -2,8 +2,8 @@ package edu.itstep.journal.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -14,5 +14,10 @@ public class WebConfig implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(String.class, LocalDate.class,
                 source -> LocalDate.parse(source, DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+    }
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 }

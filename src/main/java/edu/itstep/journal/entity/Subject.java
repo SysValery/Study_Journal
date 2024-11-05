@@ -1,5 +1,7 @@
 package edu.itstep.journal.entity;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+
 
 @Entity
 @Table(name = "subjects")
@@ -9,6 +11,7 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Назва предмету обов'язкова")
     @Column(name = "name")
     private String name;
 
@@ -16,8 +19,7 @@ public class Subject {
         this.name = name;
     }
 
-    public Subject() {
-    }
+    public Subject() {}
 
     public Long getId() {
         return id;

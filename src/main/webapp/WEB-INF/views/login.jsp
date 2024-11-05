@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,12 +13,19 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-4">
-            <h2 class="text-center">Login</h2>
+            <h2 class="text-center">Авторизуйтесь в системі</h2>
 
-            <!-- Виведення повідомлення про помилку, якщо аутентифікація не вдалася -->
+            <!-- Виведення повідомлення про помилку авторизації -->
             <c:if test="${param.error}">
                 <div class="alert alert-danger" role="alert">
                     <p>Incorrect login or password</p>
+                </div>
+            </c:if>
+
+            <!-- Виведення повідомлення про успішний вихід -->
+            <c:if test="${param.logout}">
+                <div class="alert alert-success" role="alert">
+                    <p>You have been logged out successfully.</p>
                 </div>
             </c:if>
 
@@ -30,7 +38,7 @@
 
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
+                    <input type="password" class="form-control" id="password" name="password" required autocomplete="off">
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block">Login</button>

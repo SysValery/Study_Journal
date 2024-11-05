@@ -38,7 +38,6 @@ public class AppConfig {
         return dataSource;
     }
 
-
     @Bean
     public FilterRegistrationBean<CharacterEncodingFilter> encodingFilter() {
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
@@ -76,7 +75,4 @@ public class AppConfig {
         resolver.setSuffix(".jsp");
         return resolver;
     }
-
-
-
 }

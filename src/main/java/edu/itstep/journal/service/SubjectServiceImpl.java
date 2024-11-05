@@ -18,34 +18,8 @@ public class SubjectServiceImpl implements SubjectService {
         this.subjectRepository = subjectRepository;
     }
 
-
     @Override
-    @Transactional
     public List<Subject> getAllSubjects() {
         return subjectRepository.findAll();
-    }
-
-    @Override
-    @Transactional
-    public Subject getSubjectById(Integer id) {
-        return subjectRepository.findById(id).orElse(null);
-    }
-
-    @Override
-    @Transactional
-    public void saveOrUpdateSubject(Subject subject) {
-        subjectRepository.save(subject);
-    }
-
-    @Override
-    @Transactional
-    public void deleteSubjectById(Integer id) {
-        subjectRepository.deleteById(id);
-    }
-
-    @Override
-    @Transactional
-    public List<Subject> findByName(String name) {
-        return subjectRepository.findByName(name);
     }
 }

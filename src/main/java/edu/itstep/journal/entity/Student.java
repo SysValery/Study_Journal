@@ -1,7 +1,5 @@
 package edu.itstep.journal.entity;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import javax.validation.constraints.NotNull;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +13,11 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull(message = "First name is required")
     @Column(name = "first_name")
     private String firstName;
 
+    @NotNull(message = "Last name is required")
     @Column(name = "last_name")
     private String lastName;
 
@@ -75,6 +75,10 @@ public class Student {
 
     public void setGrades(List<Grade> grades) {
         this.grades = grades;
+    }
+
+    public String getFullName() {
+        return firstName + " " + lastName;
     }
 
     @Override

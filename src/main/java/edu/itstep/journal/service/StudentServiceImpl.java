@@ -2,11 +2,17 @@ package edu.itstep.journal.service;
 
 import edu.itstep.journal.entity.Grade;
 import edu.itstep.journal.entity.Student;
+import edu.itstep.journal.repository.GradeRepository;
 import edu.itstep.journal.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;
 
@@ -21,99 +27,25 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    @Transactional
     public List<Student> getAllStudents() {
         return studentRepository.findAll();
     }
 
-    //@Override
-//    public Student getStudentById(Integer id) {
-//        return null;
-//    }
-
-
-//    @Override
-//    @Transactional
-//    public Student getStudentById(Long id) {
-//        return studentRepository.findById(id).orElse(null);
-//    }
-
     @Override
-    @Transactional
-    public Student getStudentById(Long id, String sortField, String sortDir) {
-        Student student = studentRepository.findById(id).orElse(null);
-
-        if (student != null) {
-            Comparator<Grade> comparator;
-
-            // Вибираємо компаратор для сортування
-            if ("subject".equals(sortField)) {
-                comparator = Comparator.comparing((Grade grade) -> grade.getSubject().getName());
-            } else if ("date".equals(sortField)) {
-                comparator = Comparator.comparing((Grade grade) -> grade.getDate());
-            } else {
-                comparator = Comparator.comparing(Grade::getGrade); // Default sorting if needed
-            }
-            // Якщо напрямок "desc", застосовуємо обернений компаратор
-            if ("desc".equals(sortDir)) {
-                comparator = comparator.reversed();
-            }
-
-            // Застосовуємо обраний компаратор до списку оцінок
-            student.getGrades().sort(comparator);
-        }
-
-        return student;
-    }
-
-
-
-    @Override
-    @Transactional
-    public void saveOrUpdateStudent(Student student) {
-        studentRepository.save(student);
+    public Student getStudentById(Long id) {
+        return studentRepository.findById(id).orElseThrow(() ->
+                new RuntimeException("Student with ID " + id + " not found")
+        );
     }
 
     @Override
-    public void deleteStudentById(Integer id) {
+    public List<Grade> getFilteredOrAllGradesForStudents(Student student, Long subjectId, String startDate, String endDate) {
+        LocalDate start = (startDate != null && !startDate.isEmpty()) ? LocalDate.parse(startDate) : LocalDate.of(2000, 1, 1);
+        LocalDate end = (endDate != null && !endDate.isEmpty()) ? LocalDate.parse(endDate) : LocalDate.now();
 
+        return studentRepository.findFilteredGradesForStudents(student.getId(), subjectId, start, end);
     }
-
-    @Override
-    @Transactional
-    public void deleteStudentById(Long id) {
-        studentRepository.deleteById(id);
-    }
-
-    @Override
-    @Transactional
-    public Long getStudentIdByUsername(String username){
-        return studentRepository.getStudentIdByUsername(username);
-    }
-
-    @Override
-    public Student findByUsername(String username) {
-        return null;
-    }
-
-
-    @Override
-    @Transactional
-    public List<Student> findByFirstName(String firstName) {
-        return studentRepository.findByFirstName(firstName);
-    }
-
-    @Override
-    @Transactional
-    public List<Student> findByLastName(String lastName) {
-        return studentRepository.findByLastName(lastName);
-    }
-
-    @Override
-    @Transactional
-    public List<Student> findByFirstNameAndLastName(String firstName, String lastName) {
-        return studentRepository.findByFirstNameAndLastName(firstName, lastName);
-    }
-
-
+    
+    
+    
 }

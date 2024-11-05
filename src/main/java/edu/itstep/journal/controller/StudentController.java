@@ -1,13 +1,14 @@
 package edu.itstep.journal.controller;
-import edu.itstep.journal.dto.StudentWithGradesDTO;
 import edu.itstep.journal.entity.Student;
-import edu.itstep.journal.repository.StudentRepository;
+import edu.itstep.journal.entity.Grade;
 import edu.itstep.journal.service.StudentService;
+import edu.itstep.journal.service.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -15,47 +16,29 @@ import java.util.List;
 public class StudentController {
 
     private final StudentService studentService;
+    private final SubjectService subjectService;
 
     @Autowired
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService, SubjectService subjectService) {
         this.studentService = studentService;
+        this.subjectService = subjectService;
     }
 
+    @GetMapping("/{id}")
+    public String getStudentDetails(@PathVariable Long id,
+                                    @RequestParam(required = false) Long subject,
+                                    @RequestParam(required = false) String startDate,
+                                    @RequestParam(required = false) String endDate,
+                                    Model model) {
 
-    // Отримати всіх студентів
-    @GetMapping
-    public String getAllStudents(Model model) {
-        List<Student> students = studentService.getAllStudents();
-        model.addAttribute("students", students);
-        return "students";
-    }
+        Student student = studentService.getStudentById(id);
+        List<Grade> grades = studentService.getFilteredOrAllGradesForStudents(student, subject, startDate, endDate);
 
-     @GetMapping("/{id}")
-    public String getStudentById(@PathVariable Long id,
-                                     @RequestParam(required = false, defaultValue = "subject") String sortField,
-                                     @RequestParam(required = false, defaultValue = "asc") String sortDir,
-                                     Model model) {
-
-        Student student = studentService.getStudentById(id, sortField, sortDir);
         model.addAttribute("student", student);
-        model.addAttribute("sortField", sortField);
-        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("grades", grades);
+        model.addAttribute("subjects", subjectService.getAllSubjects());
+
         return "student-detail";
-    }
-
-
-    // Створення або оновлення студента
-    @PostMapping("/save")
-    public String saveOrUpdateStudent(@ModelAttribute("student") Student student) {
-        studentService.saveOrUpdateStudent(student);
-        return "redirect:/students";
-    }
-
-    // Видалення студента за ID
-    @GetMapping("/delete/{id}")
-    public String deleteStudentById(@PathVariable("id") Long id) {
-        studentService.deleteStudentById(id);
-        return "redirect:/students";
     }
 
 }

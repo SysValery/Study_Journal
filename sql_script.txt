@@ -51,12 +51,12 @@ CREATE TABLE grades (
 
 -- Вставка даних в таблицю users
 INSERT INTO users (username, password, role, isActive) VALUES
-    ('teacher1', 'password1', 'ROLE_TEACHER', TRUE),
-    ('teacher2', 'password2', 'ROLE_TEACHER', TRUE),
-    ('teacher3', 'password3', 'ROLE_TEACHER', TRUE),
-    ('student1', 'password4', 'ROLE_STUDENT', TRUE),
-    ('student2', 'password5', 'ROLE_STUDENT', TRUE),
-    ('student3', 'password6', 'ROLE_STUDENT', TRUE),
+    ('t1', '1', 'ROLE_TEACHER', TRUE),
+    ('t2', '2', 'ROLE_TEACHER', TRUE),
+    ('t3', '3', 'ROLE_TEACHER', TRUE),
+    ('s1', '4', 'ROLE_STUDENT', TRUE),
+    ('s2', '5', 'ROLE_STUDENT', TRUE),
+    ('s3', '6', 'ROLE_STUDENT', TRUE),
     ('student4', 'password7', 'ROLE_STUDENT', TRUE),
     ('student5', 'password8', 'ROLE_STUDENT', TRUE),
     ('student6', 'password9', 'ROLE_STUDENT', TRUE),

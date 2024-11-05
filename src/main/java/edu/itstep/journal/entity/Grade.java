@@ -1,10 +1,17 @@
 package edu.itstep.journal.entity;
 
+//import jakarta.validation.constraints.Max;
+//import jakarta.validation.constraints.Min;
+//import jakarta.validation.constraints.NotBlank;
+import javax.validation.*;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.*;
+
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.PastOrPresent;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDate;
 
 @Entity
@@ -15,15 +22,20 @@ public class Grade {
     @Column
     private Long id;
 
+    @Min(value = 0, message = "Оцінка має бути більша за 0")
+    @Max(value = 100, message = "Оцінка має бути менша або рівна 100")
     @Column(name = "grade")
     private int grade;
 
+    @NotNull(message = "Comment is required")
+    @NotBlank(message = "Поле коментар не повинно бути порожнім!!")
     @Column(name = "comment")
     private String comment;
 
     @NotNull(message = "Дата є обов'язковою")
-    @PastOrPresent(message = "Дата повинна бути поточною або минулою")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @PastOrPresent(message = "Дата не може бути у майбутньому")
+    //@MinDate("2020-01-01")
     @Column(name = "date", nullable = false)
     private LocalDate date;
 
@@ -47,8 +59,6 @@ public class Grade {
         this.comment = comment;
         this.date = date;
     }
-
-    // Getters and Setters
 
     public Long getId() {
         return id;
